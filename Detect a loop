@@ -1,0 +1,58 @@
+//detect a loop in a linked list
+public class LinkedList{
+    Node head;
+    static class Node{
+        int data;
+        Node next;
+        int flag = 0;
+        
+        Node(int data)
+        {
+            this.data = data;
+            next=null;
+        }
+    }
+    public static Node push(Node head_ref,int new_data)
+    {
+        Node new_node = new Node(new_data);
+        new_node.flag=0;
+        new_node.next=head_ref;
+        head_ref=new_node;
+        return new_node;
+    }
+    public static boolean detectloop(Node h )
+    
+    {
+        while(h!=null)
+        {
+            if(h.flag==1)
+            return true;
+            
+            
+            h.flag=1;
+            h=h.next;
+        }
+        return false;
+    }
+    
+    public static void main(String[] args)
+    {
+        Node head = null;
+        head = push(head,20);
+          head = push(head,30);
+            head = push(head,40);
+              head = push(head,50);
+                head = push(head,60);
+                head.next.next.next.next=head;
+                if(detectloop(head))
+                {
+                    System.out.print("loop");
+                }
+                else
+                {
+                    System.out.print("No loop"); 
+                }
+                
+        
+    }
+}
