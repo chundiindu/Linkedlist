@@ -1,0 +1,71 @@
+//Implementation of queue using linked list
+import java.util.*;
+import java.lang.*;
+public class Queue{
+    class Node{
+        int data;
+        Node next;
+        Node(int data)
+        {
+            this.data=data;
+            next=null;
+        }
+    }
+        Node front;
+        Node rear;
+        Queue()
+        {
+            this.front = null;
+            this.rear=null;
+        }
+        public void enqueue(int new_data)
+        {
+            Node temp = new Node(new_data);
+            if(rear==null)
+            {
+                this.rear=this.front=temp;
+                return;
+            }
+            rear.next=temp;
+            rear=temp;
+        }
+        
+        public void dequeue()
+        {
+            if(front==null)
+            {
+                return;
+            }
+            Node temp = front;
+            front=front.next;
+           
+        }
+        public void display()
+        {
+            Node temp=front;
+            while(temp!=null)
+            {
+                System.out.print(temp.data+"  ");
+                temp=temp.next;
+            }
+        }
+        
+        
+        public static void main(String[] args)
+        {
+            Queue q = new Queue();
+            q.enqueue(10);
+            q.enqueue(2);
+            q.enqueue(4);
+             q.enqueue(15);
+             q.display();
+              q.dequeue();
+               q.dequeue();
+               System.out.println("Queue Front : " + q.front.data);
+        System.out.println("Queue Rear : " + q.rear.data);
+             
+            
+            
+        }
+    }
+
